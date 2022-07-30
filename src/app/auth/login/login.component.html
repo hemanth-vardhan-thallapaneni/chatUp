@@ -1,0 +1,30 @@
+<div class="login-container" fxLayout fxLayoutAlign="space-around center">
+   <div fxFlex.lg="50" fxFlex.sm="0" class="image-container">
+     
+   </div>
+   <div fxLayout="column"
+   fxLayoutAlign="center center"
+   fxFlex.lg="50" fxFlex.sm="100" fxLayoutGap="10px" class="form-container">
+        <h2>Welcome Back!</h2>
+        <div (click)="loginWithGoogle()" class="google-login" fxLayout fxLayoutAlign="center center">
+         <img width="50px" height="50px" 
+         src="../../../assets/Images/Google_Icons-09-512.webp" alt="">
+         <h3>Login With Google</h3>
+      </div>
+      <h3>or</h3>
+         <div fxLayout="column">
+            <mat-form-field appearance="outline">
+               <mat-label>Email</mat-label>
+               <input matInput placeholder="Enter your email">
+               <mat-icon matSuffix>alternate_email</mat-icon>
+             </mat-form-field>
+             <mat-form-field appearance="outline">
+               <mat-label>Password</mat-label>
+               <input matInput placeholder="Enter your password">
+               <mat-icon matSuffix>lock</mat-icon>
+             </mat-form-field>
+             <button mat-flat-button color="primary">Login!</button>
+         </div>
+
+   </div>
+</div>
