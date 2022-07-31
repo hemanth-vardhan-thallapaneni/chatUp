@@ -7,13 +7,14 @@ import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/compat/firestore';
 
 
-import { Observable, of } from 'rxjs';
+import { BehaviorSubject, Observable, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthServiceService {
   user$: Observable<any>;
+  isLoggedIn = new BehaviorSubject(false);
 
   constructor(
      private afAuth: AngularFireAuth,
@@ -25,6 +26,7 @@ export class AuthServiceService {
       switchMap((user:any) => {
           // Logged in
         if (user) {
+          this.isLoggedIn.next(true)
           return this.afs.doc<User>(`users/${user['uid']}`).valueChanges();
         } else {
           // Logged out
@@ -50,6 +52,7 @@ export class AuthServiceService {
       photoURL: user.photoURL
     } 
      if(data.uid){
+      this.isLoggedIn.next(true)
       this.router.navigate(['/home'])
      }
     return userRef.set(data, { merge: true })
@@ -58,10 +61,11 @@ export class AuthServiceService {
 
   async signOut() {
     await this.afAuth.signOut();
+    this.isLoggedIn.next(false)
     this.router.navigate(['/']);
   }
   getUser() {
-    return this.user$.pipe(first());
+    return firebase.auth().currentUser?.uid;
   }
   }
 

@@ -19,8 +19,11 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatIconModule} from '@angular/material/icon';
 import {MatInputModule} from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
+import {MatCardModule} from '@angular/material/card';
+
 import { ChatListComponent } from './features/home/chat-list/chat-list.component';
 import { ChatScreenComponent } from './features/home/chat-screen/chat-screen.component';
+import { NavbarComponent } from './shared/components/navbar/navbar.component';
 
 
 
@@ -31,6 +34,7 @@ import { ChatScreenComponent } from './features/home/chat-screen/chat-screen.com
     HomeComponent,
     ChatListComponent,
     ChatScreenComponent,
+    NavbarComponent,
 
 
   ],
@@ -47,7 +51,8 @@ import { ChatScreenComponent } from './features/home/chat-screen/chat-screen.com
     MatFormFieldModule,
     MatIconModule,
     MatInputModule,
-    MatButtonModule
+    MatButtonModule,
+    MatCardModule
   ],
   providers: [],
   bootstrap: [AppComponent]
