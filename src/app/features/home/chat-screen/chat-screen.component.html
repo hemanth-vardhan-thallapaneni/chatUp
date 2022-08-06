@@ -1,6 +1,25 @@
 <mat-card class="chat-container">
-<div fxLayout="column" fxLayoutAlign="center center">
+<div *ngIf="isNoMessage" fxLayout="column" fxLayoutAlign="center center">
    <img height="80%" width="80%" src="../../../../assets/Images/unboxing.png" alt="">
    <h2 style="font-family: poppins;">No messages found!</h2>
+</div>
+<div fxLayout="column" class="chat-screen" *ngIf="!isNoMessage">
+   <div fxLayout="column" fxLayoutAlign="start start" *ngFor="let message of group_messages" fxFlex="95" class="chat-space">
+        <mat-card fxFlex="100" *ngIf="message.uid == user_id" class="right-align">
+         {{message.content}}
+              
+        </mat-card>
+        <mat-card fxFlex="100" *ngIf="message.uid != user_id" class="left-align">
+         {{message.content}}
+        </mat-card>
+   </div>
+   <div fxFlex="5" fxLayout fxLayoutAlign="space-around center" class="chat-input">
+         <input #message_input  fxFlex="90" type="text" >
+         <div fxFlex="10" class="example-button-container">
+            <button (click)="sendMessage(message_input.value)" mat-mini-fab color="primary" aria-label="Example icon button with a menu icon">
+              <mat-icon>send</mat-icon>
+            </button>
+          </div>
+   </div>
 </div>
 </mat-card>

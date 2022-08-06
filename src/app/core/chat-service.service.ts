@@ -5,13 +5,13 @@ import { AuthServiceService } from '../auth/auth-service.service';
 import { map, switchMap } from 'rxjs/operators';
 import * as firebase from "firebase/app";
 import { arrayUnion, arrayRemove } from "firebase/firestore";
-import { Observable, combineLatest, of, Subject } from 'rxjs';
+import { Observable, combineLatest, of, Subject, BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ChatServiceService {
-  chatId = new Subject();
+  chatId = new BehaviorSubject('');
   constructor(
     private afs: AngularFirestore,
     private auth: AuthServiceService,
@@ -29,24 +29,40 @@ export class ChatServiceService {
         })
       );
   }
-  async create() {
+  async getChats(){
+    const collection = this.afs.firestore.collection('chats');
+    const snapshot = await collection.get();
+    let chats:any = []
+    snapshot.forEach((doc:any) => {
+
+    chats.push(
+      {name:doc.data().name,uid:doc.id,last_message:doc.data()?.messages[doc.data()?.messages.length -1]
+      ,image:''}
+    )
+    });
+
+   return chats;
+  }
+  async create(name:any) {
     const uid  = await this.auth.getUser();
-   
+    
     const data = {
       uid:uid,
+      name:name,
       createdAt: new Date(),
       count: 0,
       messages: []
     };
     const docRef = await this.afs.collection('chats').add(data);
     this.chatId.next(docRef.id)
-    return this.router.navigate(['chats', docRef.id]);
+    this.getChats();
+    // return this.router.navigate(['chats', docRef.id]);
   }
   async sendMessage(chatId:any, content:any) {
     const uid = await this.auth.getUser();
 
     const data = {
-      uid:uid,
+      uid:sessionStorage.getItem('id'),
       content,
       createdAt: new Date()
     };

@@ -1,18 +1,20 @@
 <div class="chat-list-container">
-  <mat-card  (click)="creatChat()" fxLayout fxLayoutAlign="start center" fxLayoutGap="10px">
+  <mat-card (click)="creatChat()" fxLayout fxLayoutAlign="start center" fxLayoutGap="10px">
     <div><mat-icon>group_add</mat-icon></div>
     <h3>Create Group</h3>
   </mat-card>
 <div class="card-list" *ngFor="let card of cards" >
-    <mat-card  class="example-card">
+    <mat-card (click)="selectChat(card.uid)" class="example-card">
         <mat-card-header style="width: 100%;">
           <div mat-card-avatar class="example-header-image">
-            <img width="50px" height="50px" [src]="card.image" alt="" srcset="">
+            <img width="50px" height="50px" [src]="card.image != '' ? '' : '../../../../assets/Images/no_dp.jpeg' " 
+            alt="" srcset="">
           </div>
+          
           <mat-card-title>
-            {{card.name}}</mat-card-title>
+            {{card.uid}}</mat-card-title>
           <mat-card-subtitle style="width: 100%;" fxLayout fxLayoutAlign="space-between center">
-           <p >{{card.last_message}}</p> 
+           <p >{{card.last_message != undefined ? card.last_message.content : '' }}</p> 
            <p>{{card.last_seen}}</p>
         </mat-card-subtitle>
         </mat-card-header>

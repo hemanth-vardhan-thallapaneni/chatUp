@@ -12,6 +12,9 @@
             color: gray;
             
         }
+        .card-list{
+               max-height: 100%;
+        }
     }
 
     ::ng-deep .mat-card-header-text {

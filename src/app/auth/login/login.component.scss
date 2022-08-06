@@ -4,9 +4,14 @@
     height: 100%;
     width: 100%;
     .image-container{
-        background-color: rgb(67, 67, 203);
+        height: 100%;
+        width: 100%;
+        background-color: #4a4dc8;
     }
     .form-container{
+        height: 100%;
+        width: 100%;
+        background-color: white;
        .google-login{
         cursor: pointer;
         height: 50px;

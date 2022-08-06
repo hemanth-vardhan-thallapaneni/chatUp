@@ -9,40 +9,28 @@ import { ChatServiceService } from 'src/app/core/chat-service.service';
 })
 export class ChatListComponent implements OnInit {
 
-  cards = [
-    {
-      image:'../../../../assets/Images/Google_Icons-09-512.webp',
-      name:'Hemanth',
-      last_message: 'Hello!',
-      last_seen:'10:30pm'
-    },
-    {
-      image:'../../../../assets/Images/Google_Icons-09-512.webp',
-      name:'Hemanth',
-      last_message: 'Hello!',
-      last_seen:'10:30pm'
-    },
-    {
-      image:'../../../../assets/Images/Google_Icons-09-512.webp',
-      name:'Hemanth',
-      last_message: 'Hello!',
-      last_seen:'10:30pm'
-    }
-  ];
+  cards:any = [];
   constructor(
     private chatservice: ChatServiceService,
     private auth:AuthServiceService
   ) { }
 
   ngOnInit(): void {
-        
+   this.getChatsList();
+  }
+  async getChatsList(){
+    this.cards = await this.chatservice.getChats();
   }
   creatChat(){
     
-    this.chatservice.create();
+    this.chatservice.create(name);
   }
   signOut(){
     this.auth.signOut()
+  }
+  selectChat(uid:any){
+    this.chatservice.chatId.next(uid);
+   
   }
 
 }

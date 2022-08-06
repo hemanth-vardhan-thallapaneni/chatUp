@@ -53,6 +53,8 @@ export class AuthServiceService {
     } 
      if(data.uid){
       this.isLoggedIn.next(true)
+      console.log(data.uid,'uid')
+      sessionStorage.setItem('id',data.uid)
       this.router.navigate(['/home'])
      }
     return userRef.set(data, { merge: true })
@@ -60,8 +62,10 @@ export class AuthServiceService {
   }
 
   async signOut() {
+    sessionStorage.clear();
     await this.afAuth.signOut();
     this.isLoggedIn.next(false)
+    
     this.router.navigate(['/']);
   }
   getUser() {
