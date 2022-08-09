@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
@@ -20,8 +20,9 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatInputModule} from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
 import {MatCardModule} from '@angular/material/card';
+import {MatDialogModule} from '@angular/material/dialog';
 
-import { ChatListComponent } from './features/home/chat-list/chat-list.component';
+import { ChatListComponent, GroupDetailsDialog } from './features/home/chat-list/chat-list.component';
 import { ChatScreenComponent } from './features/home/chat-screen/chat-screen.component';
 import { NavbarComponent } from './shared/components/navbar/navbar.component';
 
@@ -35,11 +36,13 @@ import { NavbarComponent } from './shared/components/navbar/navbar.component';
     ChatListComponent,
     ChatScreenComponent,
     NavbarComponent,
+    GroupDetailsDialog
 
 
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebase),
     provideFirestore(() => getFirestore()),
@@ -52,7 +55,8 @@ import { NavbarComponent } from './shared/components/navbar/navbar.component';
     MatIconModule,
     MatInputModule,
     MatButtonModule,
-    MatCardModule
+    MatCardModule,
+    MatDialogModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

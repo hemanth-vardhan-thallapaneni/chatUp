@@ -69,7 +69,7 @@ export class AuthServiceService {
     this.router.navigate(['/']);
   }
   getUser() {
-    return firebase.auth().currentUser?.uid;
+    return firebase.auth().currentUser;
   }
   }
 

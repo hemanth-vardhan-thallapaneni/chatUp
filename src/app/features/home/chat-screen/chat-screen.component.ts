@@ -9,10 +9,11 @@ import { ChatServiceService } from 'src/app/core/chat-service.service';
 })
 export class ChatScreenComponent implements OnInit {
 
-  isNoMessage:boolean =false;
+  isNoMessage:boolean =true;
   user_id:any;
-  chatId:string;
+  chatId:any;
   message:string;
+  current_message:string;
   group_messages:any = []
   constructor(
     private chatservice:ChatServiceService,
@@ -25,8 +26,10 @@ export class ChatScreenComponent implements OnInit {
        this.chatservice.chatId.subscribe((res:any)=>{
           if(res){
             this.chatId = res;
+            console.log(res,'df')
             this.isNoMessage =false;
             this.chatservice.get(this.chatId).subscribe(res=>{
+              console.log(res,'res')
               this.group_messages = [...res['messages']]
               console.log(this.group_messages,this.user_id)
             })
@@ -35,15 +38,21 @@ export class ChatScreenComponent implements OnInit {
        
   }
 
-  sendMessage(message:any){
+  sendMessage(){
+
     let id:any;
+
     this.chatservice.chatId.subscribe((res:any)=>{
       id = res;
-      console.log('dsfasd',res)
+
     })
     this.chatId = id;
-    console.log('id',id)
-    this.chatservice.sendMessage(this.chatId,message);
+    console.log('id',this.chatId)
+    if(this.current_message != ''){
+      this.chatservice.sendMessage(this.chatId,this.current_message);
+    }
+   
+    this.current_message = '';
   }
 
 }

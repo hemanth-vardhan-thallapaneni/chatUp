@@ -1,7 +1,8 @@
 <div class="chat-list-container">
-  <mat-card (click)="creatChat()" fxLayout fxLayoutAlign="start center" fxLayoutGap="10px">
-    <div><mat-icon>group_add</mat-icon></div>
-    <h3>Create Group</h3>
+  <mat-card class="creat-group" (click)="creatChat()" fxLayout fxLayoutAlign="space-between center">
+    
+    <span style="font-weight: bolder;">Create Group</span>
+   <mat-icon>navigate_next</mat-icon>
   </mat-card>
 <div class="card-list" *ngFor="let card of cards" >
     <mat-card (click)="selectChat(card.uid)" class="example-card">

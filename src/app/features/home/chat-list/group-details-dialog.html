@@ -1,0 +1,18 @@
+<h1 mat-dialog-title>Enter Group Details</h1>
+<div mat-dialog-content fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="5px">
+    <div style="width: 100%;">
+        <form>
+            <label for="fileUpload">Upload Image </label>
+            <input name="file" [(ngModel)]="group.image"  accept="image/*" type="file" id="fileUpload">
+          </form>
+    </div>
+  <mat-form-field appearance="outline">
+    <mat-label>Group Name</mat-label>
+ 
+    <input matInput [(ngModel)]="group.name">
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">No Thanks</button>
+  <button mat-button [mat-dialog-close]="group" cdkFocusInitial>Ok</button>
+</div>

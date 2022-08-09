@@ -18,13 +18,14 @@ export class ChatServiceService {
     private router: Router
   ) { }
   get(chatId:any) {
-    
+    console.log(chatId,'idd')
     return this.afs
       .collection<any>('chats')
       .doc(chatId)
       .snapshotChanges()
       .pipe(
         map((doc:any) => {
+          console.log(doc.payload.data(),'pay')
           return { id: doc.payload.id, ...doc.payload.data() };
         })
       );
@@ -36,38 +37,46 @@ export class ChatServiceService {
     snapshot.forEach((doc:any) => {
 
     chats.push(
-      {name:doc.data().name,uid:doc.id,last_message:doc.data()?.messages[doc.data()?.messages.length -1]
-      ,image:''}
+      {
+      name:doc.data().name,
+      uid:doc.id,
+      last_message:doc.data()?.messages[doc.data()?.messages.length -1],
+      image:''
+    }
     )
     });
-
+  console.log('chats',chats)
    return chats;
   }
-  async create(name:any) {
-    const uid  = await this.auth.getUser();
+  async create(group:any) {
+    const user  = await this.auth.getUser();
     
     const data = {
-      uid:uid,
-      name:name,
+      uid:user?.uid,
+      name:group.name,
+      image:group.image,
       createdAt: new Date(),
       count: 0,
       messages: []
     };
+    console.log('group',data)
     const docRef = await this.afs.collection('chats').add(data);
     this.chatId.next(docRef.id)
     this.getChats();
     // return this.router.navigate(['chats', docRef.id]);
   }
   async sendMessage(chatId:any, content:any) {
-    const uid = await this.auth.getUser();
+    console.log(chatId,content,'service')
+    const user = await this.auth.getUser();
 
     const data = {
       uid:sessionStorage.getItem('id'),
+      name:user?.displayName,
       content,
       createdAt: new Date()
     };
 
-    if (uid) {
+    if (user) {
       const ref = this.afs.collection('chats').doc(chatId);
       return ref.update({
         messages: arrayUnion(data)
