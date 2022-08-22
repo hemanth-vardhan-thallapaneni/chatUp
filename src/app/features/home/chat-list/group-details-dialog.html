@@ -3,7 +3,7 @@
     <div style="width: 100%;">
         <form>
             <label for="fileUpload">Upload Image </label>
-            <input name="file" [(ngModel)]="group.image"  accept="image/*" type="file" id="fileUpload">
+            <input name="file" (change)="upload($event)"  accept="*.png.jpg" type="file" id="fileUpload">
           </form>
     </div>
   <mat-form-field appearance="outline">

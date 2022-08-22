@@ -2,10 +2,11 @@ import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/compat/firestore';
 import { Router } from '@angular/router';
 import { AuthServiceService } from '../auth/auth-service.service';
-import { map, switchMap } from 'rxjs/operators';
+import { map, switchMap,finalize } from 'rxjs/operators';
 import * as firebase from "firebase/app";
 import { arrayUnion, arrayRemove } from "firebase/firestore";
 import { Observable, combineLatest, of, Subject, BehaviorSubject } from 'rxjs';
+import { AngularFireStorage } from '@angular/fire/compat/storage';
 
 @Injectable({
   providedIn: 'root'
@@ -15,10 +16,11 @@ export class ChatServiceService {
   constructor(
     private afs: AngularFirestore,
     private auth: AuthServiceService,
-    private router: Router
+    private router: Router,
+    private storage:AngularFireStorage
   ) { }
   get(chatId:any) {
-    console.log(chatId,'idd')
+    
     return this.afs
       .collection<any>('chats')
       .doc(chatId)
@@ -33,36 +35,56 @@ export class ChatServiceService {
   async getChats(){
     const collection = this.afs.firestore.collection('chats');
     const snapshot = await collection.get();
-    let chats:any = []
+    
+    let chats:any = [];
+    let image_url:string;
     snapshot.forEach((doc:any) => {
-
+    // let image =  this.storage.ref(doc.data().image)
+    // image.getDownloadURL().subscribe(res=>{
+    //  image_url =res;
+    //  console.log(image_url,'image_url')
+    // })
     chats.push(
       {
       name:doc.data().name,
       uid:doc.id,
       last_message:doc.data()?.messages[doc.data()?.messages.length -1],
-      image:''
+      image:doc.data().image
     }
     )
     });
   console.log('chats',chats)
    return chats;
   }
+
   async create(group:any) {
     const user  = await this.auth.getUser();
-    
+    let image_path = `/chatup/${new Date().getTime()}_${group['image']}`
+    let download_url;
+    let task = this.storage.ref(image_path).put(group.image);
+    task.snapshotChanges().pipe(
+      finalize(() => {
+        this.storage.ref(image_path).getDownloadURL().subscribe((url:any) => {
+          console.log(url)
+           download_url = url
+
     const data = {
       uid:user?.uid,
       name:group.name,
-      image:group.image,
+      image:download_url,
       createdAt: new Date(),
       count: 0,
       messages: []
     };
     console.log('group',data)
-    const docRef = await this.afs.collection('chats').add(data);
+    const docRef:any = this.afs.collection('chats').add(data);
     this.chatId.next(docRef.id)
     this.getChats();
+   
+        });
+      })
+    ).subscribe();
+ 
     // return this.router.navigate(['chats', docRef.id]);
   }
   async sendMessage(chatId:any, content:any) {

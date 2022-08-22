@@ -1,19 +1,20 @@
-<mat-card class="chat-container">
+<mat-card color="primary" class="chat-container">
 <div *ngIf="isNoMessage" fxLayout="column" fxLayoutAlign="center center">
    <img height="100%" width="100%" src="../../../../assets/Images/unboxing.png" alt="">
    <!-- <h2 style="font-family: poppins;">No messages found!</h2> -->
 </div>
 <div fxLayout="column" class="chat-screen" *ngIf="!isNoMessage">
-   <mat-card class="chat-header">
-      <mat-card-header>
-        <div mat-card-avatar class="example-header-image">
-         <img height="50px" width="50px" [src]="this.chatId.image? this.chatId.image : '../../../../assets/Images/no_dp.jpeg'" alt="" srcset="">
+   <div class="chat-header" fxLayout fxLayoutAlign="start center" fxLayoutGap="10px">
+        <div class="example-header-image">
+         <img style="border-radius: 50%;" height="50px" width="50px" [src]="this.group_messages.image? this.group_messages.image : '../../../../assets/Images/no_dp.jpeg'" alt="" srcset="">
         </div>
-        <mat-card-title>{{this.chatId.name}}</mat-card-title>
-      </mat-card-header>
-   </mat-card>
-   <div fxLayout="column" fxLayoutAlign="start start" *ngFor="let message of group_messages" fxFlex="95" class="chat-space">
-        <mat-card fxLayout="column" fxLayoutAlign="start center" 
+        <div>
+         <p>{{group_messages.name | titlecase}}</p>
+        </div>
+        
+   </div>
+   <div fxLayout="column" fxLayoutAlign="start start" *ngFor="let message of group_messages['messages']" fxFlex="95" class="chat-space">
+        <mat-card color="primary" fxLayout="column" fxLayoutAlign="start center" 
         fxFlex="100" *ngIf="message.uid == user_id" class="right-align">
          <span>{{message.content}}</span>  
         </mat-card>
@@ -26,7 +27,7 @@
       <mat-icon class="emoji">
          mood
       </mat-icon>
-         <input [(ngModel)]="current_message" placeholder="Type something..." fxFlex="90" type="text" >
+         <input  [(ngModel)]="current_message" placeholder="Type something..." fxFlex="90" type="text" >
          <div fxFlex="10" class="example-button-container">
             <button (click)="sendMessage()" mat-mini-fab color="primary">
               <mat-icon>send</mat-icon>

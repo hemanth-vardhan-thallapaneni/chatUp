@@ -7,6 +7,7 @@
         background: linear-gradient(#927eeb,#7c9ef4);
     }
     mat-card{
+        cursor: pointer;
         height: 70px;
         margin-top: 1%;
         font-family: poppins;
@@ -23,6 +24,7 @@
                max-height: 100%;
         }
     }
+   
 
     ::ng-deep .mat-card-header-text {
         width: 100% !important;
@@ -59,3 +61,8 @@ input[type=file]::file-selector-button:hover {
   background-color: #81ecec;
   border: 2px solid #00cec9;
 }
+::ng-deep example-header-image{
+    // height: 100px;
+    // width: 100px;
+    border-radius: 50%;
+ }

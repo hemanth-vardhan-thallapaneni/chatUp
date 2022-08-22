@@ -8,15 +8,15 @@
     <mat-card (click)="selectChat(card.uid)" class="example-card">
         <mat-card-header style="width: 100%;">
           <div mat-card-avatar class="example-header-image">
-            <img width="50px" height="50px" [src]="card.image != '' ? '' : '../../../../assets/Images/no_dp.jpeg' " 
+            <img style="border-radius: 50%;" width="50px" height="50px" [src]="card.image != '' ? card.image : '../../../../assets/Images/no_dp.jpeg' " 
             alt="" srcset="">
           </div>
           
           <mat-card-title>
-            {{card.uid}}</mat-card-title>
+            {{card.name | titlecase}}</mat-card-title>
           <mat-card-subtitle style="width: 100%;" fxLayout fxLayoutAlign="space-between center">
-           <p >{{card.last_message != undefined ? card.last_message.content : '' }}</p> 
-           <p>{{card.last_seen}}</p>
+           <p *ngIf="card.last_message" >{{card.last_message.content}}</p> 
+           <p *ngIf="card.last_seen">{{card.last_seen}}</p>
         </mat-card-subtitle>
         </mat-card-header>
         

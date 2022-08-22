@@ -2,6 +2,8 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { AuthServiceService } from 'src/app/auth/auth-service.service';
 import { ChatServiceService } from 'src/app/core/chat-service.service';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+
+
 @Component({
   selector: 'app-chat-list',
   templateUrl: './chat-list.component.html',
@@ -13,7 +15,8 @@ export class ChatListComponent implements OnInit {
   constructor(
     private chatservice: ChatServiceService,
     private auth:AuthServiceService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    
   ) { }
 
   ngOnInit(): void {
@@ -21,6 +24,7 @@ export class ChatListComponent implements OnInit {
   }
   async getChatsList(){
     this.cards = await this.chatservice.getChats();
+    console.log('cards',this.cards)
   }
   creatChat(){
     const dialogRef = this.dialog.open(GroupDetailsDialog, {
@@ -28,7 +32,7 @@ export class ChatListComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
+    
       this.chatservice.create(result);
      
     });
@@ -52,6 +56,7 @@ export class ChatListComponent implements OnInit {
   styleUrls: ['./chat-list.component.scss']
 })
 export class GroupDetailsDialog {
+  path:string;
   group = {
     name:'',
     image:''
@@ -59,6 +64,10 @@ export class GroupDetailsDialog {
   constructor(
     public dialogRef: MatDialogRef<GroupDetailsDialog>,
   ) {}
+
+  upload(event:any){
+     this.group.image = event?.target.files[0]
+  }
 
 
   onNoClick(): void {

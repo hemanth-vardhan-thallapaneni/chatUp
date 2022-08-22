@@ -1,10 +1,13 @@
 .chat-container{
+    
     width: 98%;
     height: 85%;
     .chat-screen{
         max-height: 100%;
+        
         overflow-y: scroll;
         .chat-space{
+           
            flex: none !important;
            margin-bottom: 30px;
            position: relative;
@@ -47,13 +50,21 @@
         }
     }
    .example-header-image{
-    border-radius: 50%;
+    padding: 10px;
+
    }
    .mat-card-title{
     margin-top: 5%;
    }
    .chat-header{
+    background: linear-gradient(#927eeb,#7c9ef4);
+    color: white;
+    height: 70px;
+    border-radius: 10px;
     margin-bottom: 20px;
+    font-family: poppins;
+    font-weight: bold;
+    font-size: 1.4rem;
    }
    mat-icon{
     margin: 0px;

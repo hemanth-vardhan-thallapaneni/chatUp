@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "chatup-dfe9d": {
+      "hosting": {
+        "chatUp": [
+          "chatup-dfe9d"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "chatup-dfe9d"
+  }
+}
