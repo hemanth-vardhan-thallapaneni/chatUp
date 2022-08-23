@@ -1,4 +1,4 @@
-<mat-card color="primary" class="chat-container">
+<mat-card [class]="darkMode" class="chat-container">
 <div *ngIf="isNoMessage" fxLayout="column" fxLayoutAlign="center center">
    <img height="100%" width="100%" src="../../../../assets/Images/unboxing.png" alt="">
    <!-- <h2 style="font-family: poppins;">No messages found!</h2> -->
@@ -13,8 +13,8 @@
         </div>
         
    </div>
-   <div fxLayout="column" fxLayoutAlign="start start" *ngFor="let message of group_messages['messages']" fxFlex="95" class="chat-space">
-        <mat-card color="primary" fxLayout="column" fxLayoutAlign="start center" 
+   <div [class]="darkMode" fxLayout="column" fxLayoutAlign="start start" *ngFor="let message of group_messages['messages']" fxFlex="95" class="chat-space">
+        <mat-card  fxLayout="column" fxLayoutAlign="start center" 
         fxFlex="100" *ngIf="message.uid == user_id" class="right-align">
          <span>{{message.content}}</span>  
         </mat-card>
@@ -23,13 +23,13 @@
          <div>{{message.content}}</div>  
         </mat-card>
    </div>
-   <div fxFlex="5" fxLayoutGap="15px" fxLayout fxLayoutAlign="space-around center" class="chat-input">
-      <mat-icon class="emoji">
-         mood
-      </mat-icon>
-         <input  [(ngModel)]="current_message" placeholder="Type something..." fxFlex="90" type="text" >
+   <div [class]="darkMode" fxFlex="5" fxLayoutGap="15px" fxLayout fxLayoutAlign="space-around center" class="chat-input">
+      <button mat-mini-fab >
+         <mat-icon>mood</mat-icon>
+       </button>
+         <input [class]="darkMode"  [(ngModel)]="current_message" placeholder="Type something..." fxFlex="90" type="text" >
          <div fxFlex="10" class="example-button-container">
-            <button (click)="sendMessage()" mat-mini-fab color="primary">
+            <button (click)="sendMessage()" mat-mini-fab>
               <mat-icon>send</mat-icon>
             </button>
           </div>

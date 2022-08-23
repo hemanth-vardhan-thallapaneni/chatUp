@@ -1,15 +1,19 @@
-<mat-toolbar color="accent" class="nav-container" fxLayout fxLayoutAlign="space-between center">
-    <div class="logo">
+
+<div [class]="darkClassName" class="nav-container" fxLayout fxLayoutAlign="space-between center">
+    <div  class="logo">
          <img height="70px" width="150px" src="../../../../assets/Images/ChatUp_logo.png" alt="" srcset="">
     </div>
-    <div>
-        <mat-icon>brightness_5</mat-icon>
-        <mat-slide-toggle [formControl]="toggleControl">
-        </mat-slide-toggle>
-        <mat-icon>bedtime</mat-icon>
+    <div fxLayoutAlign="space-around center" fxLayoutGap="15px">
+        <div fxLayoutAlign="space-around center" fxLayoutGap="5px">
+            <mat-icon>sunny</mat-icon>
+            <mat-slide-toggle [formControl]="toggleControl">
+            </mat-slide-toggle>
+            <mat-icon>dark_mode</mat-icon>
+        </div>
+       
         <!-- <span></span>
         <span></span>
         <span>Contact</span> -->
         <button (click)="signOut()" mat-stroked-button color="warn">Sign Out</button>
     </div>
-</mat-toolbar>
+</div>

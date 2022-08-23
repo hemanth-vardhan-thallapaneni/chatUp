@@ -1,7 +1,9 @@
 import { OverlayContainer } from '@angular/cdk/overlay';
 import { Component, HostBinding, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { BehaviorSubject } from 'rxjs';
 import { AuthServiceService } from 'src/app/auth/auth-service.service';
+import { ChatServiceService } from 'src/app/core/chat-service.service';
 
 @Component({
   selector: 'app-navbar',
@@ -10,23 +12,18 @@ import { AuthServiceService } from 'src/app/auth/auth-service.service';
 })
 export class NavbarComponent implements OnInit {
   toggleControl = new FormControl(false);
+  darkClassName = '';
   @HostBinding('class') className = '';
-  
-
   constructor(
     private auth:AuthServiceService,
-    private overlay: OverlayContainer
+    private chatservice:ChatServiceService
   ) { }
 
   ngOnInit(): void {
     this.toggleControl.valueChanges.subscribe((darkMode) => {
-      const darkClassName = 'darkMode';
-      this.className = darkMode ? darkClassName : '';
-      if (darkMode) {
-        this.overlay.getContainerElement().classList.add(darkClassName);
-      } else {
-        this.overlay.getContainerElement().classList.remove(darkClassName);
-      }
+      console.log(darkMode)
+      this.darkClassName = darkMode ?  'darkMode' : '';
+      this.chatservice.darkTheme.next(this.darkClassName);
     });
     
   }

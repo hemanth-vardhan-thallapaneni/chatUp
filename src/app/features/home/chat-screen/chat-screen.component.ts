@@ -16,6 +16,7 @@ export class ChatScreenComponent implements OnInit,AfterViewInit {
   current_message:string;
   input:any = document.getElementById("message");
   group_messages:any = []
+  darkMode: any;
   constructor(
     private chatservice:ChatServiceService,
     private auth:AuthServiceService
@@ -30,6 +31,9 @@ export class ChatScreenComponent implements OnInit,AfterViewInit {
 
   ngOnInit(): void {
     this.user_id = sessionStorage.getItem('id')
+    this.chatservice.darkTheme.subscribe((res:any)=>{
+      this.darkMode = res;
+    })
        this.chatservice.chatId.subscribe((res:any)=>{
           if(res){
             this.chatId = res;

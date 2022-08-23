@@ -1,7 +1,9 @@
 .chat-container{
     
-    width: 98%;
-    height: 85%;
+    width: 97%;
+    height: 97%;
+    border: 2px solid #927eeb;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
     .chat-screen{
         max-height: 100%;
         
@@ -38,9 +40,8 @@
             position: absolute;
             bottom: 0;
             height: 50px;
-            background: white;
             margin: 20px 0px 10px 0px;
-            width: 100%;
+            width: 98%;
             
         }
         .message-name{
@@ -72,8 +73,10 @@
   button,.emoji{
     color: white;
     border-radius: 50%;
+    
     background: linear-gradient(#927eeb,#7c9ef4);
    }
+   
    
    
 }

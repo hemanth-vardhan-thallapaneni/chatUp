@@ -13,6 +13,7 @@ import { AngularFireStorage } from '@angular/fire/compat/storage';
 })
 export class ChatServiceService {
   chatId = new BehaviorSubject('');
+  darkTheme  = new BehaviorSubject('');
   constructor(
     private afs: AngularFirestore,
     private auth: AuthServiceService,

@@ -1,15 +1,26 @@
 .chat-list-container{
-   padding: 0px 5px 5px 10px;
+   padding: 0px 5px 0px 5px;
    max-height: 95vh;
+   border-radius: 10%;
    overflow: scroll;
+   width: 100%;
+   transition-delay: 10s;
     .creat-group{
         color: white;
-        background: linear-gradient(#927eeb,#7c9ef4);
+        margin-top: 10px;
+        border-bottom: white 2px solid;
+        // background: linear-gradient(#927eeb,#7c9ef4);
     }
     mat-card{
+      
+       background-color: transparent;
+       color: white;
+       border-right: 1px solid white;
+       border-bottom: 1px solid white;
         cursor: pointer;
-        height: 70px;
-        margin-top: 1%;
+        height: 60px;
+        border-radius: 10px !important;
+        margin-bottom: 4%;
         font-family: poppins;
         .mat-card-title{
             font-weight: 900;
@@ -17,13 +28,16 @@
         }
         .mat-card-subtitle{
             font-weight: 800;
-            color: gray;
+            color: white;
             
         }
-        .card-list{
-               max-height: 100%;
-        }
+       
     }
+    mat-card:hover{
+        transform: scale(1.02);
+        transition: 1s;
+    }
+    
    
 
     ::ng-deep .mat-card-header-text {
