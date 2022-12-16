@@ -3,9 +3,9 @@
    <img height="100%" width="100%" src="../../../../assets/Images/unboxing.png" alt="">
    <!-- <h2 style="font-family: poppins;">No messages found!</h2> -->
 </div>
-<div fxLayout="column" class="chat-screen" *ngIf="!isNoMessage">
+<div fxLayout="column" class="chat-screen"  *ngIf="!isNoMessage">
    <div class="chat-header" fxLayout fxLayoutAlign="start center" fxLayoutGap="10px">
-        <div class="example-header-image">
+        <div  style="height:100%" fxLayoutAlign="center center">
          <img style="border-radius: 50%;" height="50px" width="50px" [src]="this.group_messages.image? this.group_messages.image : '../../../../assets/Images/no_dp.jpeg'" alt="" srcset="">
         </div>
         <div>

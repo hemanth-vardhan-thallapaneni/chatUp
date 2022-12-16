@@ -44,7 +44,6 @@ $angular-dark-theme: mat.define-dark-theme(
   
   @include mat.all-component-colors($angular-dark-theme);
   background-color: #424242;
-  color: white;
   transition: background-color 1s ease;
   
 }

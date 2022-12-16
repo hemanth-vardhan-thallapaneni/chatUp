@@ -1,15 +1,12 @@
 .chat-container{
-    
     width: 97%;
     height: 97%;
-    border: 2px solid #927eeb;
-    box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
+    // border: 1px solid #927eeb;
+    //box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
     .chat-screen{
-        max-height: 100%;
-        
+        height: 100%;
         overflow-y: scroll;
         .chat-space{
-           
            flex: none !important;
            margin-bottom: 30px;
            position: relative;
@@ -58,14 +55,16 @@
     margin-top: 5%;
    }
    .chat-header{
-    background: linear-gradient(#927eeb,#7c9ef4);
-    color: white;
+    // background: linear-gradient(#927eeb,#7c9ef4);
+    color: #927eeb;
+   
     height: 70px;
-    border-radius: 10px;
-    margin-bottom: 20px;
+    padding: 0px 10px;
+    margin-bottom: 10px;
     font-family: poppins;
     font-weight: bold;
     font-size: 1.4rem;
+    border-bottom : 1px solid lightgray;
    }
    mat-icon{
     margin: 0px;

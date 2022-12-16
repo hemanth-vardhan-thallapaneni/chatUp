@@ -1,54 +1,69 @@
 .chat-list-container{
-   padding: 0px 5px 0px 5px;
-   max-height: 95vh;
-   border-radius: 10%;
+   
    overflow: scroll;
    width: 100%;
-   transition-delay: 10s;
+   padding: 10px;
+   height: 100%;
+//    background-color:rgb(158, 162, 226);;
     .creat-group{
-        color: white;
-        margin-top: 10px;
-        border-bottom: white 2px solid;
-        // background: linear-gradient(#927eeb,#7c9ef4);
-    }
-    mat-card{
-      
-       background-color: transparent;
-       color: white;
-       border-right: 1px solid white;
-       border-bottom: 1px solid white;
+         font-family: poppins;
+        color: black;
         cursor: pointer;
-        height: 60px;
-        border-radius: 10px !important;
-        margin-bottom: 4%;
-        font-family: poppins;
-        .mat-card-title{
-            font-weight: 900;
-            
-        }
-        .mat-card-subtitle{
-            font-weight: 800;
-            color: white;
-            
-        }
-       
+        margin-top: 10px;
+        box-shadow: none;
+        border-bottom: 1px rgb(225, 224, 224) solid;
+        background-color: transparent;
     }
-    mat-card:hover{
-        transform: scale(1.02);
-        transition: 1s;
+    .card-list{
+        width: 100%;
+      
     }
-    
    
 
-    ::ng-deep .mat-card-header-text {
-        width: 100% !important;
-    }
-}
+    
 
+}
+h2,h5,h6{
+    padding: 0;
+    margin: 0;
+}
+  .chat-card{
+    cursor: pointer;
+    background: transparent;
+            margin-top: 5px;
+          font-family: poppins;
+            width: 100%;
+            height: 100px;
+            padding: 10px;
+            border-bottom: 1px rgb(225, 224, 224) solid;
+            .title{
+                color: #927eeb;   
+            }
+            .content{
+                width: 100%;
+                font-size: 0.7rem;
+                font-weight: bold;
+                color: gray;
+            }
+            .content > div{
+                width: 100%;
+            }
+        }
 .file-input{
     border-radius: 50%;
     height: 50px;
     width: 50px;
+}
+
+.card-list:hover{
+    border: 2px solid blueviolet;
+    border-radius: 10px;
+    transition: all 0.5s ease-out;
+      
+}
+.active{
+    border: 2px solid blueviolet;
+    border-radius: 10px;       
 }
 ::ng-deep .mat-dialog-container {
     background: linear-gradient(#927eeb,#7c9ef4);
